@@ -52,7 +52,7 @@ AuthyHit requires that you can QR codes.
 
   ```objectiveC
   // Authy Hit Scanner Delegate
-  -(void)scannerController:(AuthyHitScanner *)authyHitScanner didScanAccount: (AHAccount *)account{
+  -(void)scannerController:(AuthyHitScanner *)authyHitScanner didScanAccount: (AHAccount *)account {
     if(!account) {
       // The scanner don't recognize as authy hit account
     } else {
