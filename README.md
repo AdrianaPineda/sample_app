@@ -5,8 +5,8 @@ Authy Hit iOS
 
 The project is structured as follows:
 
-    ./
-   |-Examples
+  ./
+    |-Examples
       |---AuthyHitExample
       |-Library
 
