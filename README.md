@@ -49,7 +49,6 @@ AuthyHit requires that you can QR codes.
 
 2. When the QR code has been scanned, the following method is called. This is a sample implementation
 
-
   ```objectiveC
   // Authy Hit Scanner Delegate
   -(void)scannerController:(AuthyHitScanner *)authyHitScanner didScanAccount: (AHAccount *)account {
