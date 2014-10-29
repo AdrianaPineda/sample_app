@@ -40,38 +40,37 @@ AuthyHit requires that you can QR codes.
 
 1. To create QR code scanner simply present the AuthyHitScanner controller as follows:
 
-```objectiveC
-- (void)showScannerController {
-  AuthyHitScanner *scanner = [[AuthyHitScanner alloc] initWithDelegate:self];
-  [self presentViewController:scanner animated:NO completion:nil];
-}
-```
+  ```objectiveC
+  - (void)showScannerController {
+    AuthyHitScanner *scanner = [[AuthyHitScanner alloc] initWithDelegate:self];
+    [self presentViewController:scanner animated:NO completion:nil];
+  }
+  ```
 
 2. When the QR code has been scanned, the following method is called. This is a sample implementation
 
 
-```objectiveC
-// Authy Hit Scanner Delegate
--(void)scannerController:(AuthyHitScanner *)authyHitScanner didScanAccount:
-(AHAccount *) account{
-  if(!account) {
-    // The scanner don't recognize as authy hit account
-  } else {
-    // You have successfully scanned a QR Code
-    // The QR code has been scanned and is ready to be used using the
-    // AHAccount account param in the loadWithAccount method to
-    // register the account.
-    // TODO: Load the AuthyHit instance with AHAccount
+  ```objectiveC
+  // Authy Hit Scanner Delegate
+  -(void)scannerController:(AuthyHitScanner *)authyHitScanner didScanAccount: (AHAccount *)account{
+    if(!account) {
+      // The scanner don't recognize as authy hit account
+    } else {
+      // You have successfully scanned a QR Code
+      // The QR code has been scanned and is ready to be used using the
+      // AHAccount account param in the loadWithAccount method to
+      // register the account.
+      // TODO: Load the AuthyHit instance with AHAccount
+    }
+
+    [authyHitScanner dismissViewControllerAnimated:YES completion:nil];
   }
 
-  [authyHitScanner dismissViewControllerAnimated:YES completion:nil];
-}
-
--(void)scannerControllerDidCancel:(AuthyHitScanner *)authyHitScanner {
-  // The scanner has been stopped by user
-  [authyHitScanner dismissViewControllerAnimated:NO completion:nil];
-}
-```
+  -(void)scannerControllerDidCancel:(AuthyHitScanner *)authyHitScanner {
+    // The scanner has been stopped by user
+    [authyHitScanner dismissViewControllerAnimated:NO completion:nil];
+  }
+  ```
 
 ## Configure the AuthyHit instance
 Now, you will need an instance of `AuthyHit`, this is the main class you will be using. The `AuthyHit` class provides methods for fetching the list of pending `AHRequest`s as well as methods to aprove/deny `Request`s.
@@ -80,28 +79,27 @@ Now, you will need an instance of `AuthyHit`, this is the main class you will be
 
 1. Create an instance of `AuthyHit`
 
-```objectiveC
-AuthyHit *authyHitDefault = [AuthyHit authyHitDefault];
-```
+  ```objectiveC
+  AuthyHit *authyHitDefault = [AuthyHit authyHitDefault];
+  ```
 
   The authyHitDefault provides a thread-safe singleton instance of AuthyHit, so several calls to `[AuthyHit authyHitDefault]` will return the same instance.
 
 2. Load the `AuthyHit` instance. Before you can actually use `AuthyHit` you will have to *load* the instance. Loading is as simple as:
 
-```objectiveC
-[authyHitDefault loadWithAccount:authyHitAccount handler:^(NSError
-*error){
-  if(!error) {
-    // The account has been successfully loaded into the AuthyHit
-    // object.
-    // After this step, you can now use the other methods in the
-    // AuthyHit class
-  }else {
-    // An error has occurred, prompt the user to scan the token
-    // again.
-  }
-}];
-```
+  ```objectiveC
+  [authyHitDefault loadWithAccount:authyHitAccount handler:^(NSError *error){
+    if(!error) {
+      // The account has been successfully loaded into the AuthyHit
+      // object.
+      // After this step, you can now use the other methods in the
+      // AuthyHit class
+    }else {
+      // An error has occurred, prompt the user to scan the token
+      // again.
+    }
+  }];
+  ```
 
 **Warning** bear in mind that before calling methods from an `AuthyHit` instance such as the ones below you will first need to load the instance. XCode will not warn you nor an exception will be thrown if the `AuthyHit` instance has not been loaded.
 
