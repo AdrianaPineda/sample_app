@@ -6,9 +6,9 @@ Authy Hit iOS
 The project is structured as follows:
 
     ./
-     |-Examples
-   	  |---AuthyHitExample
-   	  |-Library
+      |-Examples
+   	   |---AuthyHitExample
+   	   |-Library
 
 1. **AuthyHitExample**: Provides a sample authy-hit. If you want to get started with the AuthyHit the best way is by taking a look at the sample project.
 2. **Library**: Contains the actual authy-hit library code.
